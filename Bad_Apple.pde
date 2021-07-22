@@ -90,20 +90,6 @@ void start_screen() {
   image(start_logo, 0, 0);
   image(github, 360, 110);
   image(youtube, 360, 215);
-  if (mousePressed) {
-    if (github_Button) {
-      link("https://github.com/nitgc-null/Bad-Apple-by-Processing-NITGC");
-      if (debug == 1) {
-        println("Githubリンクがクリックされました");
-      }
-    }
-    if (youtube_Button) {
-      link("https://www.youtube.com/watch?v=FtutLA63Cp8");
-      if (debug == 1) {
-        println("Youtubeリンクがクリックされました");
-      }
-    }
-  }
   textSize(30);
   fill(255);
   text("Bad Apple by Processing", 190, 40);
@@ -181,5 +167,22 @@ void check_Button() { //マウス座標判定部
     youtube_Button = true;
   } else {
     youtube_Button = false;
+  }
+}
+
+void mousePressed() {
+  if (screen == 0) {
+    if (github_Button) {
+      link("https://github.com/nitgc-null/Bad-Apple-by-Processing-NITGC");
+      if (debug == 1) {
+        println("Githubリンクがクリックされました");
+      }
+    }
+    if (youtube_Button) {
+      link("https://www.youtube.com/watch?v=FtutLA63Cp8");
+      if (debug == 1) {
+        println("Youtubeリンクがクリックされました");
+      }
+    }
   }
 }
