@@ -7,7 +7,7 @@ int screen = 0; //スクリーン用変数
 int loop = 0; //ループ用変数 1=ループ
 String [] loop_mes ={"Disable", "Enable"}; //ループ設定メッセージ用
 
-int debug = 0; //debug用変数 1=DebugMode
+boolean debug = true; //debug用 true = DebugMode
 
 PImage [] BadApple = new PImage[2192]; //BadApple　連番画像分
 
@@ -26,7 +26,7 @@ void setup() {
   textSize(45);
   textAlign(CENTER);
   text("Now Loading...", 240, 180); //ロードメッセージ
-  if (debug == 1) { //デバッグメッセージ
+  if (debug == true) { //デバッグメッセージ
     text("Debug Mode", 240, 270);
   }
   start_logo = loadImage("start_logo.png"); //スタート画面画像読込
@@ -34,7 +34,7 @@ void setup() {
   youtube = loadImage("youtube.png"); //YouTube画像読込
   for (i=1; i<=2192; i++) {
     BadApple[i-1] = loadImage("bad_images/"+i+".jpg"); //BadApple連番画像読込
-    if (debug == 1) {
+    if (debug == true) {
       println("読み込み中の画像番号 : "+i);
     }
   }
@@ -55,7 +55,7 @@ void draw() {
 
 void BadApple() { //再生部
   if (i!=0 && i<2192) {
-    if (debug == 1) {
+    if (debug == true) {
       println("現在の画像番号 : "+ (i-1));
     }
     image(BadApple[i-1], 0, 0);
@@ -67,7 +67,7 @@ void BadApple() { //再生部
       i=0;
       screen = 0;
 
-      if (debug == 1) { //デバッグメッセージ
+      if (debug == true) { //デバッグメッセージ
         println("ループ再生無効");
         println("i変数が"+i+"に変更されました");
         println("screen変数が"+screen+"に変更されました");
@@ -75,7 +75,7 @@ void BadApple() { //再生部
     } else if (loop == 1) { //ループ再生有効
       BadMusic.stop();
       i=1;
-      if (debug == 1) { //デバッグメッセージ
+      if (debug == true) { //デバッグメッセージ
         println("ループ再生有効");
         println("i変数が"+i+"に変更されました");
       }
@@ -108,7 +108,7 @@ void start_screen() {
   textSize(25);
   text("Backspace to finish playing", 185, 330);
 
-  if (debug == 1) {
+  if (debug == true) {
     textSize(30);
     fill(0);
     text("Debug", 235, 185);
@@ -121,7 +121,7 @@ void keyPressed() {
       i = 1;
       screen = 1;
       BadMusic.play();
-      if (debug == 1) { //デバッグメッセージ     
+      if (debug == true) { //デバッグメッセージ     
         println("i変数が"+i+"に変更されました");
         println("screen変数が"+screen+"に変更されました");
       }
@@ -130,13 +130,13 @@ void keyPressed() {
       switch(keyCode) {
       case LEFT:
         loop = 0;
-        if (debug == 1) {
+        if (debug == true) {
           println("loop変数が"+loop+"に変更されました");
         }
         break;
       case RIGHT:
         loop = 1;
-        if (debug == 1) {
+        if (debug == true) {
           println("loop変数が"+loop+"に変更されました");
         }       
         break;
@@ -149,7 +149,7 @@ void keyPressed() {
       screen = 0;
       loop = 0;
       BadMusic.stop();
-      if (debug == 1) { //デバッグメッセージ     
+      if (debug == true) { //デバッグメッセージ     
         println("i変数が"+i+"に変更されました");
         println("screen変数が"+screen+"に変更されました");
       }
@@ -174,13 +174,13 @@ void mousePressed() {
   if (screen == 0) {
     if (github_Button) {
       link("https://github.com/nitgc-null/Bad-Apple-by-Processing-NITGC");
-      if (debug == 1) {
+      if (debug == true) {
         println("Githubリンクがクリックされました");
       }
     }
     if (youtube_Button) {
       link("https://www.youtube.com/watch?v=FtutLA63Cp8");
-      if (debug == 1) {
+      if (debug == true) {
         println("Youtubeリンクがクリックされました");
       }
     }
