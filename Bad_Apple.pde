@@ -4,7 +4,7 @@ SoundFile BadMusic;
 int i;  //i変数
 
 int screen = 0; //スクリーン用変数
-int loop = 0; //ループ用変数 1=ループ
+boolean loop = false; //ループ用変数 true=ループ
 String [] loop_mes ={"Disable", "Enable"}; //ループ設定メッセージ用
 
 boolean debug = false; //debug用 true = DebugMode
@@ -62,7 +62,7 @@ void BadApple() { //再生部
     i++;
   }
   if (i==2192) {
-    if (loop == 0) { //ループ再生無効
+    if (loop == false) { //ループ再生無効
       BadMusic.stop();
       i=0;
       screen = 0;
@@ -72,7 +72,7 @@ void BadApple() { //再生部
         println("i変数が"+i+"に変更されました");
         println("screen変数が"+screen+"に変更されました");
       }
-    } else if (loop == 1) { //ループ再生有効
+    } else if (loop == true) { //ループ再生有効
       BadMusic.stop();
       i=1;
       if (debug == true) { //デバッグメッセージ
@@ -95,13 +95,10 @@ void start_screen() {
   text("Bad Apple by Processing", 190, 40);
   textSize(25);
   text("Loop Setting", 85, 110);
-  switch(loop) {
-  case 0:
-    text(loop_mes[0], 85, 145);
-    break;
-  case 1:
+  if (loop) {
     text(loop_mes[1], 85, 145);
-    break;
+  } else {
+    text(loop_mes[0], 85, 145);
   }
   textSize(14);
   text("Cursor key to change", 75, 165);
@@ -129,13 +126,13 @@ void keyPressed() {
     if (key == CODED) {    //キー入力判定部
       switch(keyCode) {
       case LEFT:
-        loop = 0;
+        loop = false;
         if (debug == true) {
           println("loop変数が"+loop+"に変更されました");
         }
         break;
       case RIGHT:
-        loop = 1;
+        loop = true;
         if (debug == true) {
           println("loop変数が"+loop+"に変更されました");
         }       
@@ -147,7 +144,7 @@ void keyPressed() {
     if (key == BACKSPACE) {
       i = 0;
       screen = 0;
-      loop = 0;
+      loop = false;
       BadMusic.stop();
       if (debug == true) { //デバッグメッセージ     
         println("i変数が"+i+"に変更されました");
