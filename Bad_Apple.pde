@@ -7,7 +7,7 @@ int screen = 0; //スクリーン用変数
 int loop = 0; //ループ用変数 1=ループ
 String [] loop_mes ={"Disable", "Enable"}; //ループ設定メッセージ用
 
-boolean debug = true; //debug用 true = DebugMode
+boolean debug = false; //debug用 true = DebugMode
 
 PImage [] BadApple = new PImage[2192]; //BadApple　連番画像分
 
